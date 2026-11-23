@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Anual Expresión Artística 2027 - Colegio Montano</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montano: {
+                            blue: '#1F3C88',      /* Azul Institucional Principal */
+                            blueSec: '#3F72AF',   /* Azul Secundario */
+                            yellow: '#F2C94C',    /* Amarillo Institucional Acento */
+                            bg: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+        }
+        /* Estilos para cursiva estricta según normativa */
+        .italic-text {
+            font-style: italic;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3F72AF;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1F3C88;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden text-slate-800 bg-slate-50">
+
+    <!-- HEADER / BARRA SUPERIOR INSTITUCIONAL -->
+    <header class="bg-montano-blue text-white shadow-md flex-none z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            
+            <!-- LOGO E INFORMACION DEL CURSO -->
+            <div class="flex items-center space-x-4">
+                <img src="https://admisiones.colegiomontano.edu.gt/assets/img/logo-cm-blanco.webp" 
+                     alt="Colegio Montano Logo" 
+                     class="h-12 w-auto object-contain"
+                     onerror="this.onerror=null; this.src='https://placehold.co/180x50/1F3C88/FFFFFF?text=Colegio+Montano';">
+                <div class="border-l border-blue-400/30 pl-4">
+                    <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                        <span>EXPRESIÓN ARTÍSTICA</span>
+                        <span class="text-xs bg-montano-yellow text-montano-blue font-bold px-2 py-0.5 rounded-full uppercase">Plan Anual 2027</span>
+                    </h1>
+                    <p class="text-xs text-blue-100 flex flex-wrap gap-x-4 gap-y-1 mt-0.5">
+                        <span><i class="italic-text">Grado:</i> Tercero Primaria</span>
+                        <span>•</span>
+                        <span><i class="italic-text">Sede:</i> Colegio Montano Cortijo</span>
+                        <span>•</span>
+                        <span><i class="italic-text">Profesor:</i> Jorge Barrios</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- BOTON PANTALLA COMPLETA -->
+            <div>
+                <button id="fullscreenBtn" onclick="toggleFullScreen()" class="bg-montano-yellow hover:bg-yellow-400 text-montano-blue font-bold py-2 px-4 rounded-lg shadow transition-all duration-200 flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-expand" id="fsIcon"></i>
+                    <span id="fsText">Pantalla Completa</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN HORIZONTAL POR PESTAÑAS -->
+    <nav class="bg-montano-blueSec shadow-inner flex-none z-10 overflow-x-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 min-w-max">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn px-4 py-3 text-sm font-medium text-white hover:bg-montano-blue transition-colors flex items-center gap-2 border-b-4 border-montano-yellow bg-montano-blue">
+                <span>I) DESCRIPTOR</span>
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn px-4 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-montano-blue/50 transition-colors flex items-center gap-2 border-b-4 border-transparent">
+                <span>II) OBJETIVOS</span>
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn px-4 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-montano-blue/50 transition-colors flex items-center gap-2 border-b-4 border-transparent">
+                <span>III) COMPETENCIAS</span>
+            </button>
+            <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn px-4 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-montano-blue/50 transition-colors flex items-center gap-2 border-b-4 border-transparent">
+                <span>IV) INDICADORES</span>
+            </button>
+            <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-btn px-4 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-montano-blue/50 transition-colors flex items-center gap-2 border-b-4 border-transparent">
+                <span>V) MÉTODOS DIDÁCTICOS</span>
+            </button>
+            <button onclick="switchTab('tab6')" id="btn-tab6" class="tab-btn px-4 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-montano-blue/50 transition-colors flex items-center gap-2 border-b-4 border-transparent">
+                <span>VI) BIBLIOGRAFÍA</span>
+            </button>
+            <button onclick="switchTab('tab7')" id="btn-tab7" class="tab-btn px-4 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-montano-blue/50 transition-colors flex items-center gap-2 border-b-4 border-transparent">
+                <span>VII) CONTENIDOS</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ÁREA PRINCIPAL DE CONTENIDO -->
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- TAB 1: DESCRIPTOR DEL CURSO -->
+            <section id="tab1" class="tab-content block space-y-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-montano-blueSec"></i>
+                        <span>I) DESCRIPTOR DEL CURSO</span>
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        El curso de Expresión Artística, en su componente de Artes Visuales, desarrolla en los estudiantes de Tercero Primaria capacidades de observación, apreciación, imaginación y comunicación mediante producciones gráficas y pictóricas. Se organiza a partir de 14 temas establecidos en la malla curricular institucional de 2027.
+                    </p>
+                    <p class="text-slate-700 leading-relaxed mb-6">
+                        Cada sesión comienza con la explicación de un tema, estilo o técnica y sus características visuales; posteriormente, el estudiante crea una obra propia empleando principalmente crayones de madera y marcadores. Se permite el uso de materiales alternativos cuando resulte pertinente, sin alterar el propósito de aprendizaje. La obra final constituye una evidencia observable de la aplicación de los conocimientos.
+                    </p>
+                    
+                    <h3 class="text-md font-semibold text-montano-blueSec mb-3 border-b pb-2">
+                        <i class="italic-text">Valores y Principios Institucionales Promovidos:</i>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">1.</span>
+                            <span class="text-slate-700"><i class="italic-text">Libertad de decisión con responsabilidad sobre el trabajo artístico.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">2.</span>
+                            <span class="text-slate-700"><i class="italic-text">Lealtad e identificación con la institución educativa.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">3.</span>
+                            <span class="text-slate-700"><i class="italic-text">Respeto, empatía y escucha ante las producciones y opiniones de los compañeros.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">4.</span>
+                            <span class="text-slate-700"><i class="italic-text">Convivencia armónica y cuidado de los materiales y espacios de trabajo.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">5.</span>
+                            <span class="text-slate-700"><i class="italic-text">Respeto por la diversidad cultural y las distintas manifestaciones artísticas.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">6.</span>
+                            <span class="text-slate-700"><i class="italic-text">Análisis y síntesis de las características de cada tema artístico.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">7.</span>
+                            <span class="text-slate-700"><i class="italic-text">Pensamiento crítico y construcción de criterios estéticos personales.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">8.</span>
+                            <span class="text-slate-700"><i class="italic-text">Relación del arte con otras áreas de conocimiento y la vida cotidiana.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">9.</span>
+                            <span class="text-slate-700"><i class="italic-text">Valoración de la diversidad cultural de Guatemala y del mundo.</i></span>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <span class="text-montano-blue font-bold">10.</span>
+                            <span class="text-slate-700"><i class="italic-text">Uso responsable de recursos visuales y digitales de consulta, cuando estén disponibles.</i></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: OBJETIVOS GENERALES -->
+            <section id="tab2" class="tab-content hidden space-y-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-montano-blueSec"></i>
+                        <span>II) OBJETIVOS GENERALES</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-50 border-l-4 border-montano-blueSec rounded-r-lg shadow-sm">
+                            <div class="text-montano-blue font-bold text-lg mb-1">Objetivo 1</div>
+                            <p class="text-slate-700 text-sm">Fortalecer la percepción visual, la observación y la sensibilidad estética mediante la interpretación de imágenes y referentes artísticos.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-l-4 border-montano-blueSec rounded-r-lg shadow-sm">
+                            <div class="text-montano-blue font-bold text-lg mb-1">Objetivo 2</div>
+                            <p class="text-slate-700 text-sm">Desarrollar habilidades de representación, composición y manejo expresivo de los materiales propios de las artes visuales.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-l-4 border-montano-blueSec rounded-r-lg shadow-sm">
+                            <div class="text-montano-blue font-bold text-lg mb-1">Objetivo 3</div>
+                            <p class="text-slate-700 text-sm">Estimular la creatividad, la autonomía y la comunicación de ideas, experiencias y emociones a través de obras personales.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border-l-4 border-montano-blueSec rounded-r-lg shadow-sm">
+                            <div class="text-montano-blue font-bold text-lg mb-1">Objetivo 4</div>
+                            <p class="text-slate-700 text-sm">Promover el respeto por la diversidad de expresiones artísticas, el trabajo responsable y la valoración de las producciones propias y ajenas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: COMPETENCIAS -->
+            <section id="tab3" class="tab-content hidden space-y-6">
+                <!-- COMPETENCIAS ACADÉMICAS -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-montano-blueSec"></i>
+                        <span>III) COMPETENCIAS ACADÉMICAS DEL ÁREA</span>
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100 flex items-start gap-3">
+                            <span class="bg-montano-blue text-white rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs flex-none">1</span>
+                            <p class="text-slate-800 text-sm">Explora y aplica elementos del lenguaje visual para representar figuras, ambientes y experiencias mediante el dibujo.</p>
+                        </div>
+                        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100 flex items-start gap-3">
+                            <span class="bg-montano-blue text-white rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs flex-none">2</span>
+                            <p class="text-slate-800 text-sm">Expresa ideas, vivencias y situaciones imaginarias mediante composiciones pictóricas creativas.</p>
+                        </div>
+                        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100 flex items-start gap-3">
+                            <span class="bg-montano-blue text-white rounded-full h-6 w-6 flex items-center justify-center font-bold text-xs flex-none">3</span>
+                            <p class="text-slate-800 text-sm">Organiza elementos del entorno natural, cultural y fantástico en obras visuales con intención comunicativa.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t text-xs text-slate-500">
+                        <i class="italic-text">Competencias blandas del documento: Creatividad, resolución de problemas, pensamiento crítico, autonomía, comunicación y respeto.</i>
+                    </div>
+                </div>
+
+                <!-- COMPETENCIAS CM (INTEGRACIÓN INSTITUCIONAL FIJA) -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-yellow">
+                    <h2 class="text-xl font-bold text-montano-blue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-star text-montano-yellow"></i>
+                        <span>COMPETENCIAS CM (INSTITUCIONALES)</span>
+                    </h2>
+                    <p class="text-xs text-slate-500 mb-4"><i class="italic-text">Marco de competencias para la formación integral del Colegio Montano</i></p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">1. Pensamiento crítico y resolución de problemas</span>
+                            <span class="text-slate-600">Análisis reflexivo y propuesta de soluciones a desafíos planteados.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">2. Colaboración y trabajo en equipo</span>
+                            <span class="text-slate-600">Interacción positiva, sinergia y consecución de metas compartidas.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">3. Competencias digitales</span>
+                            <span class="text-slate-600">Uso responsable y productivo de herramientas tecnológicas.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">4. Comunicación efectiva</span>
+                            <span class="text-slate-600">Expresión clara y asertiva de ideas en diversos lenguajes.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">5. Creatividad e innovación</span>
+                            <span class="text-slate-600">Generación de ideas originales y propuestas novedosas.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">6. Aprendizaje autónomo y adaptabilidad</span>
+                            <span class="text-slate-600">Gestión del propio aprendizaje y flexibilidad ante los cambios.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">7. Conciencia global y cultural</span>
+                            <span class="text-slate-600">Aprecio e interacción con la diversidad del entorno y del mundo.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">8. Ética y ciudadanía digital</span>
+                            <span class="text-slate-600">Actuación responsable, justa y virtuosa en la comunidad.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">9. Gestión emocional y resiliencia</span>
+                            <span class="text-slate-600">Autocontrol, empatía y capacidad de superar la adversidad.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-montano-blue block mb-1">10. Conciencia ecológica y sostenibilidad</span>
+                            <span class="text-slate-600">Cuidado y compromiso con la preservación ambiental.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 sm:col-span-2 lg:col-span-1">
+                            <span class="font-bold text-montano-blue block mb-1">11. Liderazgo</span>
+                            <span class="text-slate-600">Desempeño proactivo de roles orientados al servicio y guía.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: INDICADORES DE LOGRO -->
+            <section id="tab4" class="tab-content hidden space-y-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-montano-blueSec"></i>
+                        <span>IV) INDICADORES DE LOGRO</span>
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- C1 -->
+                        <div class="border border-slate-200 rounded-lg overflow-hidden">
+                            <div class="bg-montano-blueSec text-white px-4 py-2 font-semibold text-sm">
+                                Competencia 1: Lenguaje Visual y Dibujo
+                            </div>
+                            <div class="p-4 space-y-2 text-sm bg-slate-50">
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">1.1.</span>
+                                    <span>Construye una imagen mediante puntos de color, cuidando su distribución y la identificación de formas.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">1.2.</span>
+                                    <span>Aplica líneas rectas, curvas, onduladas y quebradas para construir figuras y enriquecer una composición.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">1.3.</span>
+                                    <span>Elabora una composición sobre «Actividades de vacaciones», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- C2 -->
+                        <div class="border border-slate-200 rounded-lg overflow-hidden">
+                            <div class="bg-montano-blueSec text-white px-4 py-2 font-semibold text-sm">
+                                Competencia 2: Composiciones Pictóricas Creativas
+                            </div>
+                            <div class="p-4 space-y-2 text-sm bg-slate-50">
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">2.1.</span>
+                                    <span>Representa «Tipos de cuevas» mediante una escena con elementos reconocibles, relaciones espaciales y colores pertinentes.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">2.2.</span>
+                                    <span>Representa «Un día en la nieve» mediante una escena con elementos reconocibles, relaciones espaciales y colores pertinentes.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">2.3.</span>
+                                    <span>Elabora una composición sobre «Personajes de cuentos», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">2.4.</span>
+                                    <span>Elabora una composición sobre «Animales en peligro de extinción», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">2.5.</span>
+                                    <span>Representa «Un día de safari» mediante una escena con elementos reconocibles, relaciones espaciales y colores pertinentes.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- C3 -->
+                        <div class="border border-slate-200 rounded-lg overflow-hidden">
+                            <div class="bg-montano-blueSec text-white px-4 py-2 font-semibold text-sm">
+                                Competencia 3: Elementos del Entorno y Comunicación
+                            </div>
+                            <div class="p-4 space-y-2 text-sm bg-slate-50">
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">3.1.</span>
+                                    <span>Elabora una composición sobre «El mercado central», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">3.2.</span>
+                                    <span>Representa «Un día en África» mediante una escena con elementos reconocibles, relaciones espaciales y colores pertinentes.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">3.3.</span>
+                                    <span>Representa «Paisaje de otoño» mediante una escena con elementos reconocibles, relaciones espaciales y colores pertinentes.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">3.4.</span>
+                                    <span>Elabora una composición sobre «Submarinos», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">3.5.</span>
+                                    <span>Elabora una composición sobre «Civilización antigua», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="font-bold text-montano-blue">3.6.</span>
+                                    <span>Elabora una composición sobre «Mi sueño favorito», integrando elementos visuales, detalles propios y organización del espacio.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: MÉTODOS DIDÁCTICOS -->
+            <section id="tab5" class="tab-content hidden space-y-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user text-montano-blueSec"></i>
+                        <span>V) MÉTODOS DIDÁCTICOS (MODELO ACTIVO-COLABORATIVO)</span>
+                    </h2>
+                    <p class="text-sm text-slate-600 mb-6">
+                        La enseñanza combina explicación breve, observación de referentes, demostración de características visuales, producción artística individual y socialización de resultados.
+                    </p>
+
+                    <h3 class="text-md font-bold text-montano-blueSec mb-4 border-b pb-2">
+                        Estructura del Período Doble (70 minutos) - 4 Momentos Metodológicos:
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Momento 1 -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <div class="flex items-center gap-2 font-bold text-montano-blue text-md mb-2">
+                                <span class="bg-montano-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">1</span>
+                                <span>Introducción Motivante</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Activación de conocimientos previos mediante preguntas, observación de imágenes, dinamización, juegos o lluvia de ideas para la presentación del tema y sus características.
+                            </p>
+                        </div>
+
+                        <!-- Momento 2 -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <div class="flex items-center gap-2 font-bold text-montano-blue text-md mb-2">
+                                <span class="bg-montano-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">2</span>
+                                <span>Trabajo Individual</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Desarrollo de potencialidades, habilidades y destrezas individuales mediante la elaboración de una obra pictórica que aplique las características explicadas, con orientación y retroalimentación del docente.
+                            </p>
+                        </div>
+
+                        <!-- Momento 3 -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <div class="flex items-center gap-2 font-bold text-montano-blue text-md mb-2">
+                                <span class="bg-montano-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">3</span>
+                                <span>Trabajo en Equipo / Cooperativo</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Interacción con roles definidos bajo la consigna <i class="italic-text">"todos para uno y uno para todos"</i>. Intercambio breve de ideas, observación respetuosa de referentes y apoyo entre compañeros.
+                            </p>
+                        </div>
+
+                        <!-- Momento 4 -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <div class="flex items-center gap-2 font-bold text-montano-blue text-md mb-2">
+                                <span class="bg-montano-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">4</span>
+                                <span>Plenaria</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Exposición pública, diálogo socrático, presentación voluntaria o rotativa de obras, explicación de decisiones visuales y reflexión sobre los aprendizajes alcanzados.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Enfoque y Evaluación -->
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100 text-xs text-slate-700 space-y-2">
+                        <p><strong>Estrategias y Metodologías Clave:</strong> Aprendizaje Basado en Proyectos (ABP) y Constructivismo para la promoción del aprendizaje significativo.</p>
+                        <p><strong>Evaluación Formativa:</strong> Observación del proceso, orientación sobre uso del espacio, composición, técnica y aplicación de características del tema.</p>
+                        <p><strong>Evaluación Sumativa:</strong> Valoración de la obra final mediante criterios o rúbrica que consideren aplicación del contenido, resolución visual, creatividad y presentación.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 6: BIBLIOGRAFÍA -->
+            <section id="tab6" class="tab-content hidden space-y-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-book text-montano-blueSec"></i>
+                        <span>VI) BIBLIOGRAFÍA</span>
+                    </h2>
+                    <p class="text-xs text-slate-500 mb-6"><i class="italic-text">Bibliografía general de apoyo para dibujo, color, apreciación e historia del arte:</i></p>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 flex items-start gap-3">
+                            <i class="fa-solid fa-bookmark text-montano-blueSec mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-slate-800">Edwards, Betty. (2012)</div>
+                                <div class="text-sm text-montano-blue"><i class="italic-text">Drawing on the Right Side of the Brain</i> (4.ª ed.).</div>
+                                <div class="text-xs text-slate-500">TarcherPerigee.</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 flex items-start gap-3">
+                            <i class="fa-solid fa-bookmark text-montano-blueSec mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-slate-800">Itten, Johannes. (1970)</div>
+                                <div class="text-sm text-montano-blue"><i class="italic-text">The Elements of Color</i>.</div>
+                                <div class="text-xs text-slate-500">Van Nostrand Reinhold.</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 flex items-start gap-3">
+                            <i class="fa-solid fa-bookmark text-montano-blueSec mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-slate-800">Gombrich, E. H. (1995)</div>
+                                <div class="text-sm text-montano-blue"><i class="italic-text">The Story of Art</i> (16.ª ed.).</div>
+                                <div class="text-xs text-slate-500">Phaidon Press.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 7: CONTENIDOS -->
+            <section id="tab7" class="tab-content hidden space-y-6">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-montano-blue">
+                    <h2 class="text-xl font-bold text-montano-blue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-montano-blueSec"></i>
+                        <span>VII) CONTENIDOS</span>
+                    </h2>
+                    <p class="text-xs text-slate-500 mb-6"><i class="italic-text">Malla curricular institucional desglosada para el ciclo lectivo:</i></p>
+
+                    <div class="bg-blue-50/50 rounded-xl p-4 border border-blue-100">
+                        <h3 class="font-bold text-montano-blue text-md mb-3 flex items-center gap-2">
+                            <span class="bg-montano-blue text-white text-xs px-2 py-1 rounded">UNIDAD I</span>
+                            <span>Artes Visuales (14 Temas)</span>
+                        </h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">1</span>
+                                <span class="text-sm font-medium text-slate-700">Puntillismo</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">2</span>
+                                <span class="text-sm font-medium text-slate-700">Tipos de líneas</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">3</span>
+                                <span class="text-sm font-medium text-slate-700">Actividades de vacaciones</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">4</span>
+                                <span class="text-sm font-medium text-slate-700">Tipos de cuevas</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">5</span>
+                                <span class="text-sm font-medium text-slate-700">Un día en la nieve</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">6</span>
+                                <span class="text-sm font-medium text-slate-700">Personajes de cuentos</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">7</span>
+                                <span class="text-sm font-medium text-slate-700">Animales en peligro de extinción</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">8</span>
+                                <span class="text-sm font-medium text-slate-700">Un día de safari</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">9</span>
+                                <span class="text-sm font-medium text-slate-700">El mercado central</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">10</span>
+                                <span class="text-sm font-medium text-slate-700">Un día en África</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">11</span>
+                                <span class="text-sm font-medium text-slate-700">Paisaje de otoño</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">12</span>
+                                <span class="text-sm font-medium text-slate-700">Submarinos</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">13</span>
+                                <span class="text-sm font-medium text-slate-700">Civilización antigua</span>
+                            </div>
+
+                            <div class="p-3 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-3">
+                                <span class="bg-montano-yellow text-montano-blue font-bold text-xs h-6 w-6 rounded-full flex items-center justify-center flex-none">14</span>
+                                <span class="text-sm font-medium text-slate-700">Mi sueño favorito</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-slate-100 border-t border-slate-200 py-2 px-4 text-center text-xs text-slate-500 flex-none">
+        <span>Colegio Montano Cortijo • Planificación Anual de Expresión Artística 2027</span>
+    </footer>
+
+    <!-- JAVASCRIPT DE INTERACCIÓN -->
+    <script>
+        // Función para cambiar entre pestañas navegables
+        function switchTab(tabId) {
+            // Ocultar todos los contenidos de pestañas
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            // Restablecer estilo de todos los botones
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-montano-blue', 'text-white', 'border-montano-yellow');
+                btn.classList.add('text-blue-100', 'border-transparent');
+            });
+
+            // Mostrar el contenido seleccionado
+            const selectedContent = document.getElementById(tabId);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+                selectedContent.classList.add('block');
+            }
+
+            // Destacar el botón activo
+            const selectedBtn = document.getElementById('btn-' + tabId);
+            if (selectedBtn) {
+                selectedBtn.classList.add('bg-montano-blue', 'text-white', 'border-montano-yellow');
+                selectedBtn.classList.remove('text-blue-100', 'border-transparent');
+            }
+        }
+
+        // Función para alternar Pantalla Completa
+        function toggleFullScreen() {
+            const fsIcon = document.getElementById('fsIcon');
+            const fsText = document.getElementById('fsText');
+
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    fsIcon.classList.remove('fa-expand');
+                    fsIcon.classList.add('fa-compress');
+                    fsText.textContent = 'Salir de Pantalla Completa';
+                }).catch(err => {
+                    console.error(`Error al intentar activar pantalla completa: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().then(() => {
+                        fsIcon.classList.remove('fa-compress');
+                        fsIcon.classList.add('fa-expand');
+                        fsText.textContent = 'Pantalla Completa';
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
